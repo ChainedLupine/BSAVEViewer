@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using FolderSelect;
 
 namespace EgaViewer_v2
 {
@@ -265,20 +266,18 @@ namespace EgaViewer_v2
 
         private void openPathToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            var fsd = new FolderSelectDialog();
+            fsd.Title = "Select a folder to browse.";
+            fsd.InitialDirectory = Properties.Settings.Default.LastDirectory;
+            if (fsd.ShowDialog(IntPtr.Zero))
+            {
+                Console.WriteLine(fsd.FileName);
+                currPath = fsd.FileName;
+                Properties.Settings.Default.LastDirectory = currPath;
+                Properties.Settings.Default.Save();
 
-            dialog.SelectedPath = currPath;
-            dialog.Description = "Select path to files.";
-            dialog.ShowNewFolderButton = false;
-            dialog.RootFolder = Environment.SpecialFolder.MyComputer;
-
-            dialog.ShowDialog();
-
-            currPath = dialog.SelectedPath;
-            Properties.Settings.Default.LastDirectory = currPath;
-            Properties.Settings.Default.Save();
-
-            PopulateFiles();
+                PopulateFiles();
+            }
         }
 
         private void MenuItem_Options_Click(object sender, EventArgs e)
@@ -291,6 +290,11 @@ namespace EgaViewer_v2
             }
 
             UpdateImage();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("This program was created by ChainedLupine (aka David Grace).\n\nView it at https://github.com/ChainedLupine/BSAVEViewer");
         }
     }
 }
