@@ -7,6 +7,12 @@ And in 2016 I re-wrote this program in C#/WinForms so I can view these files aga
 
 Basically, it can view everything up to my mid-90s Pascal/Assembler era games, where I switched from CGA/EGA to using exclusively MCGA graphics mode (320x200 256 colors).
 
+![CGA Example][CGAExample]
+![EGA Example][EGAExample]
+
+[CGAExample]: https://raw.githubusercontent.com/ChainedLupine/BSAVEViewer/master/Examples/Example_CarWars.png
+[EGAExample]: https://raw.githubusercontent.com/ChainedLupine/BSAVEViewer/master/Examples/Example_HuntersLaw.png
+
 [1]: https://en.wikipedia.org/wiki/BSAVE_(bitmap_format)
 
 ## BSAVE Format
